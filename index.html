@@ -172,11 +172,20 @@
             background-clip: text;
         }
 
+        .hero-text .subtitle {
+            font-size: 1.4rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
         .hero-text p {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
             max-width: 600px;
+            line-height: 1.8;
             animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
@@ -296,6 +305,7 @@
         .code-line:nth-child(3) { animation-delay: 1.4s; }
         .code-line:nth-child(4) { animation-delay: 1.6s; }
         .code-line:nth-child(5) { animation-delay: 1.8s; }
+        .code-line:nth-child(6) { animation-delay: 2.0s; }
 
         @keyframes typeLine {
             to {
@@ -316,7 +326,6 @@
         }
 
         .section-header {
-            text-align: center;
             margin-bottom: 4rem;
         }
 
@@ -330,8 +339,7 @@
         .section-header p {
             font-size: 1.15rem;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 700px;
         }
 
         /* Projects Grid */
@@ -475,11 +483,19 @@
             color: var(--text-secondary);
             margin-bottom: 1rem;
             font-size: 0.9rem;
+            flex-wrap: wrap;
         }
 
         .timeline-item p {
             color: var(--text-secondary);
             line-height: 1.7;
+        }
+
+        .timeline-item ul {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+            line-height: 1.8;
         }
 
         /* Skills Grid */
@@ -494,6 +510,12 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
         }
 
         .skill-category h3 {
@@ -501,6 +523,9 @@
             margin-bottom: 1.5rem;
             color: var(--accent-primary);
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
         .skill-list {
@@ -521,6 +546,7 @@
         .skill-item:hover {
             border-color: var(--accent-primary);
             transform: translateY(-2px);
+            background: rgba(0, 255, 136, 0.1);
         }
 
         /* Education Section */
@@ -580,11 +606,11 @@
         }
 
         .contact-info {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 3rem;
             margin-top: 3rem;
-            flex-wrap: wrap;
+            justify-items: center;
         }
 
         .contact-item {
@@ -676,6 +702,16 @@
             .nav-links {
                 display: none;
             }
+
+            .education-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
         }
 
         /* Scroll reveal animation */
@@ -697,7 +733,7 @@
         <div class="nav-container">
             <div class="logo">zeel<span>.</span>shah</div>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
+                <li><a href="#home">Home</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -707,16 +743,18 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="about">
+    <section class="hero" id="home">
         <div class="hero-content">
             <div class="hero-text">
+                <div class="subtitle">👋 Hi, I'm Zeel Shah</div>
                 <h1>
-                    AI/ML Engineer<br>
-                    <span class="gradient-text">Building Intelligent Systems</span>
+                    AI/ML<br>
+                    <span class="gradient-text">Engineer</span>
                 </h1>
                 <p>
-                    Recent graduate specializing in Natural Language Processing, Deep Learning, and Data Analytics. 
-                    Passionate about developing AI solutions that solve real-world problems.
+                    Specialized in building and deploying AI/ML solutions with expertise in classical algorithms, 
+                    deep learning, NLP, and modern LLM-powered applications. Passionate about creating intelligent 
+                    systems that solve real-world problems.
                 </p>
                 <div class="hero-tags">
                     <span class="tag">NLP</span>
@@ -739,10 +777,11 @@
                     </div>
                     <div class="code-content">
                         <span class="code-line"><span class="keyword">import</span> torch</span>
-                        <span class="code-line"><span class="keyword">from</span> transformers <span class="keyword">import</span> pipeline</span>
+                        <span class="code-line"><span class="keyword">from</span> transformers <span class="keyword">import</span> AutoModel</span>
+                        <span class="code-line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span>
                         <span class="code-line"></span>
-                        <span class="code-line"><span class="comment"># Building intelligent systems</span></span>
-                        <span class="code-line">model = <span class="function">pipeline</span>(<span class="string">"text-generation"</span>)</span>
+                        <span class="code-line"><span class="comment"># Building ML pipelines</span></span>
+                        <span class="code-line">model = <span class="function">AutoModel</span>.<span class="function">from_pretrained</span>(<span class="string">"model"</span>)</span>
                     </div>
                 </div>
             </div>
@@ -753,17 +792,18 @@
     <section id="projects">
         <div class="section-header reveal">
             <h2>Featured Projects</h2>
-            <p>Exploring AI/ML through hands-on development and experimentation</p>
+            <p>Hands-on AI/ML projects demonstrating practical implementation skills</p>
         </div>
         <div class="projects-grid">
             <div class="project-card reveal">
                 <div class="project-icon">🤖</div>
                 <h3>AI Voice Assistant</h3>
-                <p>Developed an intelligent voice-activated assistant with natural language understanding and speech synthesis capabilities.</p>
+                <p>Developed an intelligent voice-activated assistant with natural language understanding, speech recognition, and synthesis capabilities for hands-free interaction.</p>
                 <div class="tech-stack">
                     <span class="tech-tag">Python</span>
                     <span class="tech-tag">NLP</span>
                     <span class="tech-tag">Speech Recognition</span>
+                    <span class="tech-tag">ML Models</span>
                 </div>
                 <a href="https://github.com/zeelShah-12/AI-voice-assistant" class="project-link" target="_blank">
                     View on GitHub →
@@ -771,27 +811,14 @@
             </div>
 
             <div class="project-card reveal">
-                <div class="project-icon">💬</div>
-                <h3>AI Quote Generator</h3>
-                <p>Built a creative AI-powered quote generation system using advanced language models to produce inspiring and contextual quotes.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">AI/ML</span>
-                    <span class="tech-tag">Web Dev</span>
-                </div>
-                <a href="https://github.com/zeelShah-12/ai-quote-generator" class="project-link" target="_blank">
-                    View on GitHub →
-                </a>
-            </div>
-
-            <div class="project-card reveal">
                 <div class="project-icon">🎯</div>
                 <h3>Smart Customer Support System</h3>
-                <p>Created an intelligent customer support automation using n8n workflows, Google Sheets integration, and Gemini AI for response generation.</p>
+                <p>Built an automated customer support solution integrating n8n workflows, Google Sheets, and Gemini AI for intelligent response generation and ticket management.</p>
                 <div class="tech-stack">
-                    <span class="tech-tag">n8n</span>
+                    <span class="tech-tag">n8n Automation</span>
                     <span class="tech-tag">Gemini AI</span>
-                    <span class="tech-tag">Automation</span>
+                    <span class="tech-tag">API Integration</span>
+                    <span class="tech-tag">LLM</span>
                 </div>
                 <a href="https://github.com/zeelShah-12/Smart-Customer-Support-Form-n8n-Google-Sheets-Gemini-AI-" class="project-link" target="_blank">
                     View on GitHub →
@@ -799,12 +826,27 @@
             </div>
 
             <div class="project-card reveal">
+                <div class="project-icon">💬</div>
+                <h3>AI Quote Generator</h3>
+                <p>Created a creative AI-powered quote generation system leveraging advanced language models to produce contextually relevant and inspiring quotes.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">AI/ML APIs</span>
+                    <span class="tech-tag">Web Development</span>
+                </div>
+                <a href="https://github.com/zeelShah-12/ai-quote-generator" class="project-link" target="_blank">
+                    View on GitHub →
+                </a>
+            </div>
+
+            <div class="project-card reveal">
                 <div class="project-icon">📊</div>
                 <h3>AI-Powered Calculator with Insights</h3>
-                <p>Developed an intelligent calculator that provides statistical insights and analysis using machine learning algorithms.</p>
+                <p>Developed an intelligent calculator providing statistical insights and data analysis using machine learning algorithms for enhanced computational understanding.</p>
                 <div class="tech-stack">
                     <span class="tech-tag">Jupyter</span>
                     <span class="tech-tag">NumPy</span>
+                    <span class="tech-tag">Pandas</span>
                     <span class="tech-tag">Analytics</span>
                 </div>
                 <a href="https://github.com/zeelShah-12/AI-powered-Average-Calculator-with-Insights" class="project-link" target="_blank">
@@ -814,12 +856,12 @@
 
             <div class="project-card reveal">
                 <div class="project-icon">💡</div>
-                <h3>LeetCode Solutions</h3>
-                <p>Collection of optimized algorithmic solutions demonstrating problem-solving skills and computational thinking.</p>
+                <h3>LeetCode Solutions Repository</h3>
+                <p>Comprehensive collection of optimized algorithmic solutions demonstrating strong problem-solving skills, computational thinking, and code optimization techniques.</p>
                 <div class="tech-stack">
                     <span class="tech-tag">Python</span>
                     <span class="tech-tag">Algorithms</span>
-                    <span class="tech-tag">DSA</span>
+                    <span class="tech-tag">Data Structures</span>
                 </div>
                 <a href="https://github.com/zeelShah-12/leetcode-solutions" class="project-link" target="_blank">
                     View on GitHub →
@@ -831,34 +873,45 @@
     <!-- Experience Section -->
     <section id="experience">
         <div class="section-header reveal">
-            <h2>Experience</h2>
-            <p>Professional journey in AI/ML and software development</p>
+            <h2>Professional Experience</h2>
+            <p>Practical AI/ML and development experience across multiple organizations</p>
         </div>
         <div class="timeline">
             <div class="timeline-item reveal">
                 <h3>Analyst Intern</h3>
                 <div class="timeline-meta">
                     <span>📍 Infinnium</span>
-                    <span>📅 Jan 2026 - Present</span>
+                    <span>📅 Jan 2026 - Apr 2026 (4 months)</span>
                     <span>📌 Ahmedabad, India</span>
                 </div>
                 <p>
-                    Working with Python and Machine Learning to develop data-driven solutions. 
-                    Analyzing complex datasets and implementing ML models for business insights.
+                    Worked on data-driven ML solutions using Python and machine learning frameworks. 
+                    Responsibilities included:
                 </p>
+                <ul>
+                    <li>Analyzing complex datasets and extracting actionable insights</li>
+                    <li>Implementing machine learning models for business analytics</li>
+                    <li>Developing automated data pipelines for model training</li>
+                    <li>Collaborating with cross-functional teams on ML projects</li>
+                </ul>
             </div>
 
             <div class="timeline-item reveal">
                 <h3>Development Intern</h3>
                 <div class="timeline-meta">
                     <span>📍 Inexture Solutions</span>
-                    <span>📅 Apr 2023 - Jun 2023</span>
+                    <span>📅 Apr 2023 - Jun 2023 (3 months)</span>
                     <span>📌 Ahmedabad, India</span>
                 </div>
                 <p>
-                    Contributed to software development projects using Python. 
-                    Collaborated with cross-functional teams to deliver quality solutions.
+                    Contributed to software development projects with focus on Python-based solutions. 
+                    Key achievements:
                 </p>
+                <ul>
+                    <li>Developed Python scripts for data processing and automation</li>
+                    <li>Collaborated with development teams on feature implementation</li>
+                    <li>Participated in code reviews and quality assurance processes</li>
+                </ul>
             </div>
 
             <div class="timeline-item reveal">
@@ -868,7 +921,8 @@
                     <span>📅 Part-time</span>
                 </div>
                 <p>
-                    Gained hands-on experience in software development and technical problem-solving.
+                    Gained foundational experience in software development, technical problem-solving, 
+                    and collaborative project work in a professional environment.
                 </p>
             </div>
         </div>
@@ -878,41 +932,54 @@
     <section id="skills">
         <div class="section-header reveal">
             <h2>Technical Skills</h2>
-            <p>Technologies and tools I work with</p>
+            <p>Comprehensive toolkit for AI/ML engineering and development</p>
         </div>
         <div class="skills-grid">
             <div class="skill-category reveal">
-                <h3>🧠 AI/ML Frameworks</h3>
+                <h3>🧠 Machine Learning</h3>
                 <div class="skill-list">
-                    <span class="skill-item">TensorFlow</span>
-                    <span class="skill-item">PyTorch</span>
-                    <span class="skill-item">Keras</span>
-                    <span class="skill-item">Hugging Face</span>
-                    <span class="skill-item">LangChain</span>
                     <span class="skill-item">Scikit-learn</span>
+                    <span class="skill-item">Model Training</span>
+                    <span class="skill-item">Feature Engineering</span>
+                    <span class="skill-item">Model Evaluation</span>
+                    <span class="skill-item">Hyperparameter Tuning</span>
+                    <span class="skill-item">Cross-validation</span>
                 </div>
             </div>
 
             <div class="skill-category reveal">
-                <h3>💻 Programming Languages</h3>
+                <h3>🔥 Deep Learning</h3>
                 <div class="skill-list">
-                    <span class="skill-item">Python</span>
+                    <span class="skill-item">PyTorch</span>
+                    <span class="skill-item">TensorFlow</span>
+                    <span class="skill-item">Keras</span>
+                    <span class="skill-item">Neural Networks</span>
+                    <span class="skill-item">CNNs & RNNs</span>
+                    <span class="skill-item">Transfer Learning</span>
+                </div>
+            </div>
+
+            <div class="skill-category reveal">
+                <h3>🤖 LLMs & NLP</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Hugging Face Transformers</span>
+                    <span class="skill-item">LangChain</span>
+                    <span class="skill-item">Prompt Engineering</span>
+                    <span class="skill-item">RAG Systems</span>
+                    <span class="skill-item">NLTK</span>
+                    <span class="skill-item">Fine-tuning LLMs</span>
+                </div>
+            </div>
+
+            <div class="skill-category reveal">
+                <h3>💻 Programming & Tools</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Python (Advanced)</span>
                     <span class="skill-item">SQL</span>
                     <span class="skill-item">JavaScript</span>
                     <span class="skill-item">HTML/CSS</span>
-                    <span class="skill-item">JSON</span>
-                </div>
-            </div>
-
-            <div class="skill-category reveal">
-                <h3>📚 Libraries & Tools</h3>
-                <div class="skill-list">
-                    <span class="skill-item">NumPy</span>
-                    <span class="skill-item">Pandas</span>
-                    <span class="skill-item">NLTK</span>
-                    <span class="skill-item">RAG</span>
-                    <span class="skill-item">Git</span>
-                    <span class="skill-item">Jupyter</span>
+                    <span class="skill-item">Git & GitHub</span>
+                    <span class="skill-item">Jupyter Notebooks</span>
                     <span class="skill-item">Google Colab</span>
                     <span class="skill-item">VS Code</span>
                     <span class="skill-item">PyCharm</span>
@@ -920,13 +987,26 @@
             </div>
 
             <div class="skill-category reveal">
-                <h3>🎯 Specializations</h3>
+                <h3>📊 Data Science</h3>
                 <div class="skill-list">
-                    <span class="skill-item">Natural Language Processing</span>
-                    <span class="skill-item">Deep Learning</span>
-                    <span class="skill-item">Neural Networks</span>
-                    <span class="skill-item">Data Analytics</span>
-                    <span class="skill-item">Model Training</span>
+                    <span class="skill-item">NumPy</span>
+                    <span class="skill-item">Pandas</span>
+                    <span class="skill-item">Data Preprocessing</span>
+                    <span class="skill-item">EDA</span>
+                    <span class="skill-item">Data Visualization</span>
+                    <span class="skill-item">Statistical Analysis</span>
+                </div>
+            </div>
+
+            <div class="skill-category reveal">
+                <h3>🎯 Core Competencies</h3>
+                <div class="skill-list">
+                    <span class="skill-item">ML Model Development</span>
+                    <span class="skill-item">Algorithm Implementation</span>
+                    <span class="skill-item">Problem Solving</span>
+                    <span class="skill-item">Code Optimization</span>
+                    <span class="skill-item">Technical Documentation</span>
+                    <span class="skill-item">Team Collaboration</span>
                 </div>
             </div>
         </div>
@@ -935,8 +1015,8 @@
     <!-- Education Section -->
     <section id="education">
         <div class="section-header reveal">
-            <h2>Education</h2>
-            <p>Academic background and qualifications</p>
+            <h2>Education & Training</h2>
+            <p>Academic foundation and specialized certifications</p>
         </div>
         <div class="education-grid">
             <div class="education-card reveal">
@@ -944,25 +1024,27 @@
                 <div class="education-content">
                     <h3>B.Tech in Computer Science & Engineering</h3>
                     <div class="education-meta">
-                        Parul University • Specialization in Artificial Intelligence
+                        Parul University • Specialization in Artificial Intelligence • 2026
                     </div>
                     <div class="education-details">
-                        Focused on advanced AI/ML concepts, deep learning architectures, and practical applications 
-                        in intelligent systems development.
+                        Comprehensive program covering advanced AI/ML concepts, deep learning architectures, 
+                        neural networks, and practical applications in intelligent systems development. 
+                        Focus on both theoretical foundations and hands-on implementation.
                     </div>
                 </div>
             </div>
 
             <div class="education-card reveal">
-                <div class="education-icon">📜</div>
+                <div class="education-icon">🏆</div>
                 <div class="education-content">
                     <h3>Diploma in Deep Learning & Neural Networks</h3>
                     <div class="education-meta">
-                        Parul University • 1 Year Program
+                        Parul University • 1 Year Intensive Program
                     </div>
                     <div class="education-details">
-                        Specialized training in neural network architectures, optimization techniques, 
-                        and state-of-the-art deep learning frameworks.
+                        Specialized certification focusing on neural network architectures, optimization techniques, 
+                        backpropagation, convolutional and recurrent networks, and state-of-the-art deep learning 
+                        frameworks including PyTorch and TensorFlow.
                     </div>
                 </div>
             </div>
@@ -972,10 +1054,11 @@
                 <div class="education-content">
                     <h3>Diploma in Computer Engineering</h3>
                     <div class="education-meta">
-                        Swarrnim Startup and Innovation University • 2023
+                        Swarrnim Startup and Innovation University • Graduated 2023
                     </div>
                     <div class="education-details">
-                        Foundation in computer science fundamentals, programming, and software development principles.
+                        Foundation in computer science fundamentals, programming paradigms, data structures, 
+                        algorithms, and software development principles. Strong base for advanced ML studies.
                     </div>
                 </div>
             </div>
@@ -986,8 +1069,8 @@
     <section id="contact">
         <div class="contact-content">
             <div class="section-header reveal">
-                <h2>Let's Connect</h2>
-                <p>Open to opportunities, collaborations, and interesting conversations about AI/ML</p>
+                <h2>Let's Build Something Together</h2>
+                <p>Open to AI/ML opportunities, collaborations, and interesting discussions about artificial intelligence and machine learning</p>
             </div>
             <div class="contact-info reveal">
                 <div class="contact-item">
@@ -1016,7 +1099,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Zeel Shah. Built with passion for AI/ML.</p>
+        <p>&copy; 2026 Zeel Shah • AI/ML Engineer • Built with passion for AI/ML</p>
     </footer>
 
     <script>
